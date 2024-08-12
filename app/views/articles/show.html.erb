@@ -1,0 +1,20 @@
+<div class="container mt-5">
+  <div class="card">
+    <% if @article.image_url.present? %>
+      <img src="<%= @article.image_url %>" class="card-img-top" alt="<%= @article.title %>">
+    <% end %>
+    <div class="card-body">
+      <h1 class="card-title"><%= @article.title %></h1>
+      <p class="card-text"><%= @article.body %></p>
+      <div class="d-flex justify-content-between align-items-center mt-4">
+        <div>
+          <%= link_to 'Edit', edit_article_path(@article), class: 'btn btn-primary' %>
+          <%= form_with model: @article, method: :delete, local: true do %>
+            <%= submit_tag 'Delete', data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <% end %>
+        </div>
+        <%= link_to 'Back to Articles', articles_path, class: 'btn btn-outline-secondary' %>
+      </div>
+    </div>
+  </div>
+</div>
